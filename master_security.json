@@ -10,15 +10,7 @@
 				"tags": [
 					"MasterSecurity"
 				],
-				"parameters": [
-					{
-						"name": "PageNumber",
-						"in": "query",
-						"schema": {
-							"type": "integer",
-							"format": "int32"
-						}
-					},
+				"parameters": [					
 					{
 						"name": "PageSize",
 						"in": "query",
