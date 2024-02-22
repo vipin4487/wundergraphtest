@@ -1,0 +1,171 @@
+datasource db1 {
+  provider = "postgresql"
+  url      = "postgresql://postgres:graphpassword@localhost:54322/tenant_2?schema=public"
+
+}
+
+///remove below lines as this solution does not work and give error that 
+///Error validating datasource `db2`: You defined more than one datasource. 
+///This is not allowed yet because support for multiple databases has not been implemented yet.
+///datasource db2 {
+  ///provider = "postgresql"
+  ///url      = "postgresql://postgres:graphpassword@localhost:54322/tenant_1?schema=public"  
+///}
+
+model master_portfolio {
+  edm_account_id                             Int       @id
+  record_insert                              DateTime? @db.Timestamptz(6)
+  account_preferred_id_type                  String?
+  account_preferred_id                       String?
+  trading_system_portfolio_name              String?
+  base_currency                              String?
+  business_group                             String?
+  consolidated_report_only_indicator         String?
+  elimination_major_product_code             String?
+  fund_type_code                             String?
+  legal_entity                               String?
+  licat_exclusion_indicator                  String?
+  licat_life_code                            String?
+  licat_ofsi_company_code                    String?
+  licat_ofsi_company_description             String?
+  licat_ofsi_sub_company_code                String?
+  licat_ofsi_sub_company_description         String?
+  licat_reporting_entity_code                String?
+  line_of_business                           String?
+  major_product_code                         Int?
+  major_product_description                  String?
+  naic_reporting_indicator                   String?
+  operation_code                             String?
+  pfi_account_elimination_group              Int?
+  portfolio_statement_asset_class_code       String?
+  portfolio_termination_date                 DateTime? @db.Timestamptz(6)
+  product_inactive                           String?
+  product_line_name                          String?
+  securities_lending_participation_indicator String?
+  segment_acronym_code                       String?
+  start_date                                 DateTime? @db.Timestamptz(6)
+  sub_segment_code                           Int?
+  sub_segment_type_code                      String?
+  sub_segment_type_code_translated           String?
+  third_party_loan_code                      String?
+  trading_system_portfolio_ticker            String?
+}
+
+model master_security {
+  edm_sec_id                        Int       @id
+  revision_date                     DateTime? @db.Timestamptz(6)
+  issue_name                        String?
+  company                           String?
+  asset_currency_current            String?
+  bloomberg_yellow_key              String?
+  announced_date                    DateTime? @db.Timestamptz(6)
+  approval_date                     DateTime? @db.Timestamptz(6)
+  bond_type_current                 String?
+  component_name_text               String?
+  construction_loan_ind             String?
+  coupon_currency                   String?
+  coupon_first_date_current         DateTime? @db.Timestamptz(6)
+  coupon_rate_current               Decimal?  @db.Decimal
+  data_load_service                 String?
+  date_acquired                     DateTime? @db.Timestamptz(6)
+  day_count_current                 String?
+  day_count_basis                   String?
+  days_mnth_day                     String?
+  deal_name_text                    String?
+  debt_equity_description           String?
+  disclosed_name                    String?
+  domicile_country                  String?
+  enhanced_disclosure               String?
+  exchange_current                  String?
+  factor_current                    Decimal?  @db.Decimal
+  first_principal_date_current      DateTime? @db.Timestamptz(6)
+  flat_amount                       String?
+  flat_amount2                      String?
+  gear_income_default               String?
+  government_obligation             String?
+  incorporation_country             String?
+  initial_price_current             Decimal?  @db.Decimal
+  instrument_id_current             String?
+  int_in_advance_ind                String?
+  issue_country                     String?
+  issue_description                 String?
+  issuer_id_current                 String?
+  issuer_state                      String?
+  loan                              String?
+  loan_subordinate_id               String?
+  maturity_date_current             DateTime? @db.Timestamptz(6)
+  option_style_code                 String?
+  original_issue_date               DateTime? @db.Timestamptz(6)
+  original_slc_internal_rating_code String?
+  pfi_holding_id                    String?
+  preferred_id_context              String?
+  preferred_issue_id                String?
+  primary_borrower                  String?
+  property_address_line_1_text      String?
+  property_address_line_2_text      String?
+  property_address_line_3_text      String?
+  property_country_code             String?
+  property_currency                 String?
+  property_postal_code              String?
+  property_state                    String?
+  purchase_price_current            Decimal?  @db.Decimal
+  put_call_indicator                String?
+  quantity_multiplier_current       String?
+  reporting_region                  String?
+  risk_country                      String?
+  shares_outstanding_current        String?
+  slc_asset_type_current            String?
+  slc_security_type_current         String?
+  strike_rate_current               String?
+  sub_loan_group                    String?
+  tranche_type                      String?
+  underlying_instrument_id          String?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model security_analytics {
+  edm_sec_id          Int
+  analytics_date      DateTime? @db.Timestamptz(6)
+  spread_duration     Decimal?  @db.Decimal
+  yield_to_maturity   Decimal?  @db.Decimal
+  krd_10yr            Decimal?  @db.Decimal
+  krd_15yr            Decimal?  @db.Decimal
+  krd_1yr             Decimal?  @db.Decimal
+  krd_20yr            Decimal?  @db.Decimal
+  krd_25yr            Decimal?  @db.Decimal
+  krd_2yr             Decimal?  @db.Decimal
+  krd_30yr            Decimal?  @db.Decimal
+  krd_3mth            Decimal?  @db.Decimal
+  krd_3yr             Decimal?  @db.Decimal
+  krd_5yr             Decimal?  @db.Decimal
+  krd_7yr             Decimal?  @db.Decimal
+  zv_spread           String?
+  wac                 String?
+  wam                 String?
+  wal_to_worst        Decimal?  @db.Decimal
+  normal_yield        Decimal?  @db.Decimal
+  dvo1                String?
+  coupon_rate         Decimal?  @db.Decimal
+  modified_duration   Decimal?  @db.Decimal
+  effective_convexity String?
+  oas                 String?
+  effective_duration  String?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model security_ids {
+  edm_sec_id          Int?
+  cusip               String? @db.VarChar(20)
+  aladdin_dummy_cusip String? @db.VarChar(20)
+  isin                String? @db.VarChar(20)
+  sedol               String? @db.VarChar(20)
+  ric                 String? @db.VarChar(20)
+  ticker              String? @db.VarChar(20)
+  valoren             String? @db.VarChar(20)
+  brs                 String? @db.VarChar(20)
+  id_bd_global        String? @db.VarChar(20)
+
+  @@ignore
+}

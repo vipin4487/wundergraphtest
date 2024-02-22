@@ -1,0 +1,492 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "MasterSecurity",
+		"version": "1.0"
+	},
+	"paths": {
+		"/api/MasterSecurity": {
+			"get": {
+				"tags": [
+					"MasterSecurity"
+				],
+				"parameters": [
+					{
+						"name": "PageNumber",
+						"in": "query",
+						"schema": {
+							"type": "integer",
+							"format": "int32"
+						}
+					},
+					{
+						"name": "PageSize",
+						"in": "query",
+						"schema": {
+							"type": "integer",
+							"format": "int32"
+						}
+					},
+					{
+						"name": "TenantName",
+						"in": "query",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"text/plain": {
+								"schema": {
+									"$ref": "#/components/schemas/GetMasterSecurityResult"
+								}
+							},
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetMasterSecurityResult"
+								}
+							},
+							"text/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetMasterSecurityResult"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/MasterSecurity/{tenantName}/{edmSecId}": {
+			"get": {
+				"tags": [
+					"MasterSecurity"
+				],
+				"parameters": [
+					{
+						"name": "tenantName",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "edmSecId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int32"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"text/plain": {
+								"schema": {
+									"$ref": "#/components/schemas/MasterSecurity"
+								}
+							},
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MasterSecurity"
+								}
+							},
+							"text/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MasterSecurity"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"text/plain": {
+								"schema": {
+									"$ref": "#/components/schemas/ProblemDetails"
+								}
+							},
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProblemDetails"
+								}
+							},
+							"text/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProblemDetails"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"text/plain": {
+								"schema": {
+									"$ref": "#/components/schemas/ProblemDetails"
+								}
+							},
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProblemDetails"
+								}
+							},
+							"text/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProblemDetails"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"GetMasterSecurityResult": {
+				"type": "object",
+				"properties": {
+					"total": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"masterSecurities": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/MasterSecurity"
+						},
+						"nullable": true
+					}
+				},
+				"additionalProperties": false
+			},
+			"MasterSecurity": {
+				"type": "object",
+				"properties": {
+					"edmSecId": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"revisionDate": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"issueName": {
+						"type": "string",
+						"nullable": true
+					},
+					"company": {
+						"type": "string",
+						"nullable": true
+					},
+					"assetCurrencyCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"bloombergYellowKey": {
+						"type": "string",
+						"nullable": true
+					},
+					"announcedDate": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"approvalDate": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"bondTypeCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"componentNameText": {
+						"type": "string",
+						"nullable": true
+					},
+					"constructionLoanInd": {
+						"type": "string",
+						"nullable": true
+					},
+					"couponCurrency": {
+						"type": "string",
+						"nullable": true
+					},
+					"couponFirstDateCurrent": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"couponRateCurrent": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"dataLoadService": {
+						"type": "string",
+						"nullable": true
+					},
+					"dateAcquired": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"dayCountCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"dayCountBasis": {
+						"type": "string",
+						"nullable": true
+					},
+					"daysMnthDay": {
+						"type": "string",
+						"nullable": true
+					},
+					"dealNameText": {
+						"type": "string",
+						"nullable": true
+					},
+					"debtEquityDescription": {
+						"type": "string",
+						"nullable": true
+					},
+					"disclosedName": {
+						"type": "string",
+						"nullable": true
+					},
+					"domicileCountry": {
+						"type": "string",
+						"nullable": true
+					},
+					"enhancedDisclosure": {
+						"type": "string",
+						"nullable": true
+					},
+					"exchangeCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"factorCurrent": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"firstPrincipalDateCurrent": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"flatAmount": {
+						"type": "string",
+						"nullable": true
+					},
+					"flatAmount2": {
+						"type": "string",
+						"nullable": true
+					},
+					"gearIncomeDefault": {
+						"type": "string",
+						"nullable": true
+					},
+					"governmentObligation": {
+						"type": "string",
+						"nullable": true
+					},
+					"incorporationCountry": {
+						"type": "string",
+						"nullable": true
+					},
+					"initialPriceCurrent": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"instrumentIdCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"intInAdvanceInd": {
+						"type": "string",
+						"nullable": true
+					},
+					"issueCountry": {
+						"type": "string",
+						"nullable": true
+					},
+					"issueDescription": {
+						"type": "string",
+						"nullable": true
+					},
+					"issuerIdCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"issuerState": {
+						"type": "string",
+						"nullable": true
+					},
+					"loan": {
+						"type": "string",
+						"nullable": true
+					},
+					"loanSubordinateId": {
+						"type": "string",
+						"nullable": true
+					},
+					"maturityDateCurrent": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"optionStyleCode": {
+						"type": "string",
+						"nullable": true
+					},
+					"originalIssueDate": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"originalSlcInternalRatingCode": {
+						"type": "string",
+						"nullable": true
+					},
+					"pfiHoldingId": {
+						"type": "string",
+						"nullable": true
+					},
+					"preferredIdContext": {
+						"type": "string",
+						"nullable": true
+					},
+					"preferredIssueId": {
+						"type": "string",
+						"nullable": true
+					},
+					"primaryBorrower": {
+						"type": "string",
+						"nullable": true
+					},
+					"propertyAddressLine1Text": {
+						"type": "string",
+						"nullable": true
+					},
+					"propertyAddressLine2Text": {
+						"type": "string",
+						"nullable": true
+					},
+					"propertyAddressLine3Text": {
+						"type": "string",
+						"nullable": true
+					},
+					"propertyCountryCode": {
+						"type": "string",
+						"nullable": true
+					},
+					"propertyCurrency": {
+						"type": "string",
+						"nullable": true
+					},
+					"propertyPostalCode": {
+						"type": "string",
+						"nullable": true
+					},
+					"propertyState": {
+						"type": "string",
+						"nullable": true
+					},
+					"purchasePriceCurrent": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"putCallIndicator": {
+						"type": "string",
+						"nullable": true
+					},
+					"quantityMultiplierCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"reportingRegion": {
+						"type": "string",
+						"nullable": true
+					},
+					"riskCountry": {
+						"type": "string",
+						"nullable": true
+					},
+					"sharesOutstandingCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"slcAssetTypeCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"slcSecurityTypeCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"strikeRateCurrent": {
+						"type": "string",
+						"nullable": true
+					},
+					"subLoanGroup": {
+						"type": "string",
+						"nullable": true
+					},
+					"trancheType": {
+						"type": "string",
+						"nullable": true
+					},
+					"underlyingInstrumentId": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"additionalProperties": false
+			},
+			"ProblemDetails": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"nullable": true
+					},
+					"title": {
+						"type": "string",
+						"nullable": true
+					},
+					"status": {
+						"type": "integer",
+						"format": "int32",
+						"nullable": true
+					},
+					"detail": {
+						"type": "string",
+						"nullable": true
+					},
+					"instance": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"additionalProperties": {}
+			}
+		}
+	}
+}
